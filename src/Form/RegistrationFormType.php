@@ -37,6 +37,7 @@ class RegistrationFormType extends AbstractType
             ->add('gender', GenderType::class, [
             'placeholder' => 'Choose gender option',
         ]);
+
         ;
     }
 

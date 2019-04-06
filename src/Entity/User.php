@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Form\GenderType;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -47,12 +49,26 @@ class User implements UserInterface
      */
     private $birthdate;
 
+    /**
+     * @ORM\Column(type="string", length=5)
+     */
     private $gender;
 
     /**
      * @ORM\Column(type="string", length=15)
      */
     private $phonenumber;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\training", inversedBy="users")
+     */
+    private $traininggroup;
+
+    public function __construct()
+    {
+        $this->traininggroup = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -144,12 +160,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getGender(): ? GenderType
+    public function getGender(): ? string
     {
         return $this->gender;
     }
 
-    public function setGender(GenderType $gender): self
+    public function setGender(string $gender): self
     {
         $this->gender= $gender;
 
@@ -180,4 +196,32 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|training[]
+     */
+    public function getTraininggroup(): Collection
+    {
+        return $this->traininggroup;
+    }
+
+    public function addTraininggroup(training $traininggroup): self
+    {
+        if (!$this->traininggroup->contains($traininggroup)) {
+            $this->traininggroup[] = $traininggroup;
+        }
+
+        return $this;
+    }
+
+    public function removeTraininggroup(training $traininggroup): self
+    {
+        if ($this->traininggroup->contains($traininggroup)) {
+            $this->traininggroup->removeElement($traininggroup);
+        }
+
+        return $this;
+    }
+
+    
 }

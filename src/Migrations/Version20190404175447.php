@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190404092025 extends AbstractMigration
+final class Version20190404175447 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -23,7 +23,7 @@ final class Version20190404092025 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'sqlite', 'Migration can only be executed safely on \'sqlite\'.');
 
         $this->addSql('CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles CLOB NOT NULL --(DC2Type:json)
-        , password VARCHAR(255) NOT NULL, fio VARCHAR(45) NOT NULL, yes BOOLEAN NOT NULL, birthdate DATE NOT NULL, phonenumber VARCHAR(15) NOT NULL)');
+        , password VARCHAR(255) NOT NULL, fio VARCHAR(45) NOT NULL, birthdate DATE NOT NULL, gender VARCHAR(5) NOT NULL, phonenumber VARCHAR(15) NOT NULL)');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_8D93D649E7927C74 ON user (email)');
     }
 
