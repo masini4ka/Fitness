@@ -60,7 +60,7 @@ class User implements UserInterface
     private $phonenumber;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\training", inversedBy="users")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Training", inversedBy="users")
      */
     private $traininggroup;
 

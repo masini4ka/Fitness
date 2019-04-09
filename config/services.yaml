@@ -7,6 +7,18 @@ parameters:
     locale: 'en'
 
 services:
+    admin.training:
+        class: App\Admin\TrainingAdmin
+        arguments: [~, App\Entity\Training, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Training' }
+
+    admin.user:
+        class: App\Admin\UserAdmin
+        arguments: [~, App\Entity\User, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'User' }
+            - App\Controller\UserAdminController
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.

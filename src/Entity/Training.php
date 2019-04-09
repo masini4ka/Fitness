@@ -34,7 +34,7 @@ class Training
     private $Description;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="traininggroup")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="traininggroup", cascade={"persist", "remove"})
      */
     private $users;
 

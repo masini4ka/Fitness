@@ -15,6 +15,10 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            remember_me:
+                secret:   '0cd907d94508b5268164dd70759cccfc'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
             anonymous: true
             logout:
                 path:   app_logout

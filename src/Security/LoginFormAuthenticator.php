@@ -83,7 +83,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 //            $formAuthenticator,
 //            'main'
 //        );
-        return $this->passwordEncoder->isPasswordValid($user, '88888888');
+        return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
