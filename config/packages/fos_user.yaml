@@ -1,0 +1,23 @@
+fos_user:
+  db_driver: orm
+  firewall_name: main
+  user_class: App\Entity\User
+  from_email:
+    address: "hello@gmail.com"
+    sender_name: "FtinessAPP"
+  service:
+    mailer: fos_user.mailer.twig_swift
+  resetting:
+    email:
+      template:   email/password_resetting.email.twig
+  registration:
+    confirmation:
+      from_email:
+        address:        masini4ka@gmail.com
+        sender_name:    Fitness App
+      enabled:    true # change to true for required email confirmation
+      template:   '@FOSUser/Registration/email.txt.twig'
+    form:
+      type:               App\Form\Type\RegistrationFormType # or 'fos_user_registration' on Symfony < 2.8
+      name:               fos_user_registration_form
+      validation_groups:  [Registration, Default]

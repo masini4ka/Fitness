@@ -6,25 +6,30 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
-        app_user_provider:
-            entity:
-                class: App\Entity\User
-                property: email
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+#        app_user_provider:
+#            entity:
+#                class: App\Entity\User
+#                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             remember_me:
-                secret:   '0cd907d94508b5268164dd70759cccfc'
+                secret:   '%kernel.secret%'
                 lifetime: 604800 # 1 week in seconds
-                path:     /
+                path:     /home
             anonymous: true
             logout:
                 path:   app_logout
+            logout_on_user_change: true
             guard:
                 authenticators:
                     - App\Security\LoginFormAuthenticator
+
+
 
             # activate different ways to authenticate
 
@@ -37,5 +42,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+#         - { path: ^/admin, roles: ROLE_USER }
+#         - { path: ^/profile, roles: ROLE_USER }

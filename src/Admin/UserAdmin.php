@@ -6,6 +6,9 @@ namespace App\Admin;
 
 use App\Entity\Training;
 use App\Entity\User;
+use App\Entity\UserTraining;
+use App\Form\Type\GenderType;
+use App\Form\Type\NotificationType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -16,6 +19,7 @@ use Sonata\AdminBundle\Form\Type\ModelType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Security\Core\Encoder\PlaintextPasswordEncoder;
+use Sonata\Form\Type\CollectionType;
 
 class UserAdmin extends AbstractAdmin
 {
@@ -24,30 +28,31 @@ class UserAdmin extends AbstractAdmin
     {
 
 
-        $formMapper->add('FIO', TextType::class);
-        $formMapper->add('email', TextType::class);
-        $formMapper->add('phonenumber', TextType::class);
-        $formMapper->add('password', TextType::class);
-        $formMapper->add('traininggroup', ModelType::class, [
-                'class' => Training::class,
-                'property' => 'Name',
-                'mapped' => true,
-                'required' => false,
-                'expanded' => true,
-                'multiple'    => true,
-                'by_reference' => false
-            ])
-        ;
-
-        $formMapper->add('birthdate');
-        $formMapper->add('gender');
+        $formMapper->add('FIO', TextType::class)
+                    ->add('email', TextType::class)
+                    ->add('phonenumber', TextType::class)
+                    ->add('password', TextType::class)
+                    ->add('traininggroup', ModelType::class, [
+                            'class' => Training::class,
+                            'property' => 'Name',
+                            'mapped' => true,
+                            'required' => false,
+                            'expanded' => true,
+                            'multiple'    => true,
+                            'by_reference' => false
+                        ])
+                    ->add('birthdate')
+                    ->add('gender', GenderType::class, [
+                    'placeholder' => 'Choose gender option',
+                    ])
+                    ->add('notificationtype', NotificationType::class, [
+                'placeholder' => 'Choose notification option',
+                    ]);
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-//        $datagridMapper->add('FIO');
-//        $datagridMapper->add('email');
-//        $datagridMapper->add('password')
+
         $datagridMapper->add('traininggroup', null, [], EntityType::class, [
                 'class' => Training::class,
                 'choice_label' => 'Name',
@@ -57,33 +62,17 @@ class UserAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('FIO');
-        $listMapper->addIdentifier('email');
-        $listMapper->addIdentifier('phonenumber');
-        $listMapper->addIdentifier('password');
-        $listMapper->add('training.name');
-        $listMapper->addIdentifier('birthdate');
-        $listMapper->addIdentifier('gender');
+        $listMapper->addIdentifier('FIO')
+                    ->addIdentifier('email')
+                    ->addIdentifier('phonenumber')
+                    ->addIdentifier('password')
+                    ->add('training.name')
+                    ->addIdentifier('birthdate')
+                    ->addIdentifier('gender')
+                    ->addIdentifier('notificationtype', NotificationType::class);
+
 
     }
-
-//    public function preUpdate($user): void
-//    {
-//        $this->getModelManager()->updateCanonicalFields($user);
-//        $this->getModelManager()->updatePassword($user);
-//    }
-//    public function preUpdate($user)
-//    {
-//        $this->getUserManager()->updateCanonicalFields($user);
-//        $this->getUserManager()->updatePassword($user);
-//    }
-
-//    public function setUserManager(UserManagerInterface $userManager)
-//    {
-//        $this->userManager = $userManager;
-//    }
-//
-
 
     /**
      * @param $user* hashes plain password from the admin panel

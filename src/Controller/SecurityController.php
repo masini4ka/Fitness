@@ -36,34 +36,4 @@ class SecurityController extends AbstractController
         throw new \Exception('Will be intercepted before getting here');
     }
 
-//    /**
-//     * @Route("/registere", name="app_pregister")
-//     */
-//    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator)
-//    {
-//        $form = $this->createForm(RegistrationFormType::class);
-//        $form->handleRequest($request);
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            /** @var User $user */
-//            $user = $form->getData();
-//            $user->setPassword($passwordEncoder->encodePassword(
-//                $user,
-//                $user->getPassword()
-//            ));
-//            $em = $this->getDoctrine()->getManager();
-//            $em->persist($user);
-//            $em->flush();
-//            return $guardHandler->authenticateUserAndHandleSuccess(
-//                $user,
-//                $request,
-//                $formAuthenticator,
-//                'main'
-//            );
-//            return $this->redirectToRoute('app_login');
-//
-//        }
-//        return $this->render('registration/register.html.twig', [
-//            'registrationForm' => $form->createView(),
-//        ]);
-//    }
 }

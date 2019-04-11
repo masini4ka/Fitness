@@ -13,22 +13,22 @@ class TrainingAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper->add('Name', TextType::class)
-        ->add('Coach', TextType::class)
-        ->add('Description', TextType::class);
+                    ->add('Coach', TextType::class)
+                    ->add('Description', TextType::class);
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper->add('Name');
-        $datagridMapper->add('Coach');
-        $datagridMapper->add('Description');
+        $datagridMapper->add('Name')
+                        ->add('Coach')
+                        ->add('Description');
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('Name');
-        $listMapper->addIdentifier('Coach');
-        $listMapper->addIdentifier('Description');
+        $listMapper->addIdentifier('Name')
+                    ->addIdentifier('Coach')
+                    ->addIdentifier('Description');
     }
 
 }

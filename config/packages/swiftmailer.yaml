@@ -1,3 +1,22 @@
+#swiftmailer:
+#    url: '%env(MAILER_URL)%'
+#    spool: { type: 'memory' }
+#    username: masini4ka
+#    host: mail.smtp2go.com
+#    password: 0WKVqWKCGnaf
+#    port: 465
+#    auth_mode: login
 swiftmailer:
-    url: '%env(MAILER_URL)%'
+    transport:        gmail
+    username:         maki.kovalenko@gmail.com
+    password:         kid2rUc88abkbvjy9kid3rUc8
+    host:             localhost
+    port:             465
+    encryption:       ssl
+    auth-mode:        login
     spool: { type: 'memory' }
+    stream_options:
+        ssl:
+            allow_self_signed: true
+            verify_peer: false
+            verify_peer_name: false
