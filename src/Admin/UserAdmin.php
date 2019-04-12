@@ -17,12 +17,18 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Sonata\AdminBundle\Form\Type\ModelType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Security\Core\Encoder\PlaintextPasswordEncoder;
-use Sonata\Form\Type\CollectionType;
-
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Sonata\AdminBundle\Route\RouteCollection;
 class UserAdmin extends AbstractAdmin
 {
+    /**
+     * @param RouteCollection $collection
+     */
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection
+            ->add('notify', $this->getRouterIdParameter().'/notify');
+    }
 
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -30,6 +36,7 @@ class UserAdmin extends AbstractAdmin
 
         $formMapper->add('FIO', TextType::class)
                     ->add('email', TextType::class)
+                    ->add('username', TextType::class)
                     ->add('phonenumber', TextType::class)
                     ->add('password', TextType::class)
                     ->add('traininggroup', ModelType::class, [
@@ -47,7 +54,11 @@ class UserAdmin extends AbstractAdmin
                     ])
                     ->add('notificationtype', NotificationType::class, [
                 'placeholder' => 'Choose notification option',
-                    ]);
+                    ])
+            ->add('enabled', CheckboxType::class, array(
+                'label'     => 'Enable Account',
+                'required'  => false,
+            ));
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -64,15 +75,40 @@ class UserAdmin extends AbstractAdmin
     {
         $listMapper->addIdentifier('FIO')
                     ->addIdentifier('email')
+                    ->addIdentifier('username')
                     ->addIdentifier('phonenumber')
                     ->addIdentifier('password')
-                    ->add('training.name')
                     ->addIdentifier('birthdate')
-                    ->addIdentifier('gender')
+//                    ->addIdentifier('gender')
                     ->addIdentifier('notificationtype', NotificationType::class);
+            $listMapper
+                ->add('_action', null, [
+                    'actions' => [
+
+                        'notify' => [
+                            'template' => 'CRUD/list__action_notify.html.twig',
+                        ]
+                    ]
+                ]);
 
 
     }
+//    public function configureActionButtons($action, $object = null)
+//    {
+//        $list = parent::configureActionButtons($action, $object);
+//
+//        $list['notify']['template'] = 'notify_button.html.twig';
+//
+//        return $list;
+//    }
+//    public function getDashboardActions()
+//    {
+//        $actions = parent::getDashboardActions();
+//
+//        $actions['notify']['template'] = 'notify_dashboard_button.html.twig';
+//
+//        return $actions;
+//    }
 
     /**
      * @param $user* hashes plain password from the admin panel

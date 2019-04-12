@@ -1,0 +1,6 @@
+{% block  content%}
+    <p1>Dear {{ name }}, we would like to remind you about the training you subscribed to :
+        {% for training in traininggroup %}
+            <li>{{ training.Name|e }}</li>
+        {% endfor %}</p1>
+{% endblock content%}

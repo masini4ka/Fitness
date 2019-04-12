@@ -24,17 +24,17 @@ class RegistrationController extends AbstractController
         $subject = 'Account activation';
         $email = $user->getEmail();
 
-        $renderedTemplate = $this->templating->render('AppBundle:Emails:registration.html.twig', array(
-            'username' => $username,
-            'confirmationToken' => $confirmationToken
-        ));
+//        $renderedTemplate = $this->templating->render('AppBundle:Emails:registration.html.twig', array(
+//            'username' => $username,
+//            'confirmationToken' => $confirmationToken
+//        ));
 
         $message = \Swift_Message::newInstance()
             ->setSubject($subject)
             ->setFrom(MAILER_FROM)
             ->setReplyTo(MAILER_FROM)
-            ->setTo($email)
-            ->setBody($renderedTemplate, "text/html");
+            ->setTo($email);
+//            ->setBody($renderedTemplate, "text/html");
 
         $this->mailer->send($message);
 
@@ -57,12 +57,6 @@ class RegistrationController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-//            return $guardHandler->authenticateUserAndHandleSuccess(
-//                $user,
-//                $request,
-//                $formAuthenticator,
-//                'main'
-//            );
         }
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),

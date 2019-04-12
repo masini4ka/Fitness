@@ -1,4 +1,7 @@
 {
+    "bunny/bunny": {
+        "version": "v0.4.1"
+    },
     "cocur/slugify": {
         "version": "v3.2"
     },
@@ -105,6 +108,52 @@
     "egulias/email-validator": {
         "version": "2.1.7"
     },
+    "enqueue/amqp-bunny": {
+        "version": "0.7",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.7",
+            "ref": "2ef9206636a23f2c50936de195f6bc54247dea65"
+        }
+    },
+    "enqueue/amqp-tools": {
+        "version": "0.9.8"
+    },
+    "enqueue/dsn": {
+        "version": "0.9.2"
+    },
+    "enqueue/enqueue": {
+        "version": "0.9.9"
+    },
+    "enqueue/enqueue-bundle": {
+        "version": "0.9",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.9",
+            "ref": "a025d0d707c6a7fefb8903f1c9844700dc69ee9d"
+        },
+        "files": [
+            "config/packages/enqueue.yaml",
+            "config/packages/test/enqueue.yaml"
+        ]
+    },
+    "enqueue/fs": {
+        "version": "0.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.4",
+            "ref": "4d45d1e6b113832ad13f6d321506c004ed12fe2e"
+        }
+    },
+    "enqueue/null": {
+        "version": "0.9.2"
+    },
+    "exsyst/swagger": {
+        "version": "v0.4.1"
+    },
     "facebook/webdriver": {
         "version": "1.6.0"
     },
@@ -149,11 +198,27 @@
             "config/packages/lexik_jwt_authentication.yaml"
         ]
     },
+    "makasim/temp-file": {
+        "version": "0.2.0"
+    },
     "monolog/monolog": {
         "version": "1.24.0"
     },
     "namshi/jose": {
         "version": "7.2.3"
+    },
+    "nelmio/api-doc-bundle": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "c8e0c38e1a280ab9e37587a8fa32b251d5bc1c94"
+        },
+        "files": [
+            "config/packages/nelmio_api_doc.yaml",
+            "config/routes/nelmio_api_doc.yaml"
+        ]
     },
     "nikic/php-parser": {
         "version": "v4.2.1"
@@ -184,6 +249,21 @@
     },
     "psr/simple-cache": {
         "version": "1.0.1"
+    },
+    "queue-interop/amqp-interop": {
+        "version": "0.8.1"
+    },
+    "queue-interop/queue-interop": {
+        "version": "0.8.0"
+    },
+    "ramsey/uuid": {
+        "version": "3.8.0"
+    },
+    "react/event-loop": {
+        "version": "v1.1.0"
+    },
+    "react/promise": {
+        "version": "v2.7.1"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
@@ -609,5 +689,8 @@
     },
     "zendframework/zend-eventmanager": {
         "version": "3.2.1"
+    },
+    "zircote/swagger-php": {
+        "version": "2.0.13"
     }
 }

@@ -1,4 +1,8 @@
 {% extends "@!FOSUser/Registration/register.html.twig" %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+{% endblock %}
 {% block  content%}
 <h1>Register Aquanaut!</h1>
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
