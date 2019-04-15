@@ -9,7 +9,7 @@
 swiftmailer:
     transport:        gmail
     username:         maki.kovalenko@gmail.com
-    password:         kid2rUc88abkbvjy9kid3rUc8
+    password:         ************************
     host:             localhost
     port:             465
     encryption:       ssl
