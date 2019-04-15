@@ -1,0 +1,61 @@
+{% extends "@!FOSUser/Profile/show.html.twig" %}
+{% block fos_user_content %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    {% endblock %}
+    {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    {% endblock %}
+
+
+    <div class="container">
+        <table class="table">
+            <tbody>
+            <tr class="active">
+                <td>Username</td>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr class="active">
+                <td>Email</td>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr class="active">
+                <td>Gender</td>
+                <td>{% if user.gender == 'F' %}
+                        Female
+                    {% else %}
+                        Male
+                    {% endif %}</td>
+            </tr>
+            <tr class="active">
+                <td>Password</td>
+                <td>{{ user.password }}</td>
+            </tr>
+            <tr class="active">
+                <td>Trainings</td>
+                <td>{% for training in user.traininggroup %}
+                    <li>{{ training.Name|e }}</li>
+                    {% endfor %}</p1></td>
+            </tr>
+            <tr class="active">
+                <td>Notification</td>
+                <td>
+                    {% if user.notificationtype == 0 %}
+                    Unsubscribed
+                    {% elseif user.notificationtype == 1 %}
+                    Notifications by email
+                    {% else %}
+                    Notification by SMS
+                    {% endif %}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+<a href="/profile/change-password">Change pasword</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="/profile/edit">Change username</a>
+    {% endif %}
+
+{% endblock fos_user_content %}

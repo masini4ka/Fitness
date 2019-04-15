@@ -1,24 +1,22 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
-#fos_user:
-#    db_driver:      orm
-#    firewall_name: main
-#    user_class: Acme\UserBundle\Entity\User
-#    from_email:
-#        address: "masini4ka@gmail.com"
-#        sender_name: "Maryna"
+
 services:
-#    foo_message_processor:
-#        class: 'FooProcessor'
-#        tags:
-#            - { name: 'enqueue.topic_subscriber' }
+#    App\MessageHandler\SmsNotificationHandler:
+#        tags: [messenger.message_handler]
+    foo_message_processor:
+        class: 'App\Async\MessageProcessor'
+        tags:
+            - { name: 'enqueue.client.processor' }
     app.form.registration:
         class: App\Form\Type\RegistrationFormType
         tags:
           - {name: form.type}
-#    api_key_authenticator:
-#        class: App\Security\TokenAuthenticator
+#    app.form.brandname:
+#        class: App\Form\Type\UserInfoType
+#        tags:
+#            - {name: form.type}
     admin.training:
         class: App\Admin\TrainingAdmin
         arguments: [~, App\Entity\Training, ~]

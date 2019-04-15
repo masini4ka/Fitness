@@ -59,6 +59,7 @@ class UserAdmin extends AbstractAdmin
                 'label'     => 'Enable Account',
                 'required'  => false,
             ));
+
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -77,7 +78,7 @@ class UserAdmin extends AbstractAdmin
                     ->addIdentifier('email')
                     ->addIdentifier('username')
                     ->addIdentifier('phonenumber')
-                    ->addIdentifier('password')
+//                    ->addIdentifier('password')
                     ->addIdentifier('birthdate')
 //                    ->addIdentifier('gender')
                     ->addIdentifier('notificationtype', NotificationType::class);
